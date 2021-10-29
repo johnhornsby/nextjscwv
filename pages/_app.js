@@ -1,7 +1,15 @@
-import '../styles/globals.css'
+
+import { Reset } from 'styled-reset';
+import GlobalStyle from '../styles/GlobalStyle';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <Reset />
+      <GlobalStyle />
+      <Component {...pageProps} />
+    </>
+  );
 }
 
 export default MyApp
