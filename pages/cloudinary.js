@@ -21,7 +21,7 @@ const Image = styled.img`
 `;
 
 const url =
-  'https://res.cloudinary.com/john-hornsby-me/image/upload/{TRANSFORMATION}/v1628446302/agencyheadless/Safari.webp 360w';
+  'https://res.cloudinary.com/john-hornsby-me/image/upload/{TRANSFORMATION},q_75/v1628446302/agencyheadless/Safari.webp 360w';
 
 const getImageUrl = (transformString) => url.replace('{TRANSFORMATION}', transformString);
 
@@ -34,7 +34,7 @@ export default function Home() {
         <link
           rel="preload"
           as="image"
-          href="https://res.cloudinary.com/john-hornsby-me/image/upload/w_360,ar_375:480,c_fill,g_xy_center,x_1550,y_800/v1628446302/agencyheadless/Safari.webp"
+          href="https://res.cloudinary.com/john-hornsby-me/image/upload/w_360,ar_375:480,c_fill,g_xy_center,x_1550,y_800,q_75/v1628446302/agencyheadless/Safari.webp"
         />
       </Head>
 
