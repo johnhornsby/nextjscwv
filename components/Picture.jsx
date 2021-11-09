@@ -18,7 +18,7 @@ const getImageAttributes = (key, index, breakpoints, pictureSizes, image) => {
 
   return {
     url,
-    srcSet: `${url} ${widthOfImage}w, ${url2x} ${widthOfImage * 2}w`,
+    srcSet: `${url} ${widthOfImage}w${!isFirst ? `, ${url2x} ${widthOfImage * 2}w` : '' }`,
     media: `(${mediaQuery}: ${breakpointSize}px)`,
     sizes:`${responsiveWidth}vw`,
   }
@@ -34,7 +34,7 @@ const getSource = (key, index, breakpoints, pictureSizes, image) => {
 
 const Picture = ({ options }) => {
   const breakpointsKeys = Object.keys(Breakpoints);
-  breakpointsKeys.splice(-1, 1);
+  breakpointsKeys.splice(-1, 1); // ignore the last top breakpoint
   const pictureSizes = [...options.sizes];
   const desktopBreakpointIndex = breakpointsKeys.findIndex(key => key === 'DESKTOP');
   const mobileBreakpointIndex = breakpointsKeys.findIndex(key => key === 'MOBILE');
