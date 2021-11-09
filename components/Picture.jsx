@@ -37,13 +37,22 @@ const Picture = ({ options }) => {
   breakpointsKeys.splice(-1, 1);
   const pictureSizes = [...options.sizes];
   const desktopBreakpointIndex = breakpointsKeys.findIndex(key => key === 'DESKTOP');
+  const mobileBreakpointIndex = breakpointsKeys.findIndex(key => key === 'MOBILE');
   const { url } = getImageAttributes('DESKTOP', desktopBreakpointIndex, Breakpoints, pictureSizes, options.image);
+  const { srcSet } = getImageAttributes('MOBILE', mobileBreakpointIndex, Breakpoints, pictureSizes, options.image);
 
   return (
-    <picture>
-      {breakpointsKeys.map((key, breakpointIndex) => getSource(key, breakpointIndex, Breakpoints, pictureSizes, options.image)).reverse()}
-      <img src={url} alt='' />
-    </picture>
+    <>
+      {options.eager &&
+        <Head>
+          <link as="image" preload imageSrcSet={srcSet}></link>
+        </Head>
+      }
+      <picture>
+        {breakpointsKeys.map((key, breakpointIndex) => getSource(key, breakpointIndex, Breakpoints, pictureSizes, options.image)).reverse()}
+        <img src={url} alt={options.image.alt} />
+      </picture>
+    </>
   )
 };
 
